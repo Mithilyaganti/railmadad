@@ -14,7 +14,17 @@ except Exception as e:
 
 # Supabase crud
 
+def get_all(table: str):
+    return supabase.table(table).select("*").execute()
 
+def get_by_id(table: str, id: int):
+    return supabase.table(table).select("*").eq("id", id).execute()
 
+def create(table: str, data: dict):
+    return supabase.table(table).insert(data).execute()
 
+def update(table: str, id: int, data: dict):
+    return supabase.table(table).update(data).eq("id", id).execute()
 
+def delete(table: str, id: int):
+    return supabase.table(table).delete().eq("id", id).execute()
