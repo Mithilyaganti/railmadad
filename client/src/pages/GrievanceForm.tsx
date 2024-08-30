@@ -6,7 +6,7 @@ interface FormData {
   phone: string;
   email: string;
   pnr: string;
-  grievanceType: string;
+  grievancetype: string;
   description: string;
   image: File | null;
 }
@@ -17,7 +17,7 @@ const RailMadadGrievanceForm: React.FC = () => {
     phone: '',
     email: '',
     pnr: '',
-    grievanceType: '',
+    grievancetype: '',
     description: '',
     image: null,
   });
@@ -32,7 +32,6 @@ const RailMadadGrievanceForm: React.FC = () => {
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    
     const formPayload = new FormData();
     Object.entries(formData).forEach(([key, value]) => {
       if (value !== null) {
@@ -44,17 +43,16 @@ const RailMadadGrievanceForm: React.FC = () => {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
+        withCredentials: true,
       });
-      console.log('Grievance submitted:', response.data);
-      // Handle success (e.g., show a success message, reset form, etc.)
+      console.log(response.data);
     } catch (error) {
       console.error('Error submitting grievance:', error);
-      // Handle error (e.g., show an error message)
     }
   };
 
   return (
-    <div className="bg-gray-800 p-6 rounded-lg shadow-lg text-gray-200">
+    <div className="bg-gray-800 p-6 h-full shadow-lg text-gray-200">
       <h2 className="text-3xl font-bold text-[#ff9999] mb-4 border-b-2 border-[#ff9999] pb-2">Raise Grievance</h2>
       <form onSubmit={handleSubmit} className="space-y-4">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -110,17 +108,20 @@ const RailMadadGrievanceForm: React.FC = () => {
           </div>
         </div>
         <div className="bg-gray-700 p-3 rounded-lg shadow-md border-l-4 border-red-400">
-          <label htmlFor="grievanceType" className="block text-sm font-medium text-gray-300 mb-1">Grievance Type</label>
+          <label htmlFor="grievancetype" className="block text-sm font-medium text-gray-300 mb-1">Grievance Type</label>
           <select
-            id="grievanceType"
-            name="grievanceType"
-            value={formData.grievanceType}
+            id="grievancetype"
+            name="grievancetype"
+            value={formData.grievancetype}
             onChange={handleChange}
             required
             className="mt-1 block w-full rounded-md bg-gray-600 border-gray-500 text-white focus:border-red-400 focus:ring-red-400 text-sm"
           >
             <option value="">Select a grievance type</option>
             <option value="delay">Train Delay</option>
+            <option value="cancellation">Cancellation</option>
+            <option value="refund">Refund</option>
+            <option value="injury">injury</option>
             <option value="cleanliness">Cleanliness Issue</option>
             <option value="food">Food Quality</option>
             <option value="staff">Staff Behavior</option>
