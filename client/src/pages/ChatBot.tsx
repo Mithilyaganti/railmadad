@@ -4,6 +4,7 @@ import ChatbotGrievanceForm from "../components/ChatbotGrievanceFrom";
 import TicketBookingForm from "../components/TicketBookingForm";
 import apiClient from "../config/axios";
 import { GrievanceTypes } from "./GrievanceForm";
+import { useTranslation } from "react-i18next";
 
 export interface ChatMessageTypes {
   text: string;
@@ -15,6 +16,7 @@ const Chatbot: React.FC = () => {
   const [input, setInput] = useState("");
   const [showGrievanceForm, setShowGrievanceForm] = useState(false);
   const [showTicketForm, setShowTicketForm] = useState(false);
+  const { t } = useTranslation();
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -146,13 +148,13 @@ const Chatbot: React.FC = () => {
           value={input}
           onChange={(e) => setInput(e.target.value)}
           className="flex-1 border rounded-l px-4 py-2"
-          placeholder="Type your message..."
+          placeholder={t("typeYourMessage")}
         />
         <button
           type="submit"
           className="bg-blue-500 text-white px-4 py-2 rounded-r"
         >
-          Send
+          {t("send")}
         </button>
       </form>
     </div>

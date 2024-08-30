@@ -1,9 +1,3 @@
-# GET /track-complaint
-# POST /feedback
-
-# POST /raise-grievience ---- FormData 2sdk - image-text, categorization
-# POST /book-ticket
-
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 import os

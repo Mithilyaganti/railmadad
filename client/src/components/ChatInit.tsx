@@ -1,5 +1,6 @@
 import React from "react";
 import { ChatMessageTypes } from "../pages/ChatBot";
+import { useTranslation } from "react-i18next";
 
 interface ChatInitTypes {
   setMessages: React.Dispatch<React.SetStateAction<ChatMessageTypes[]>>;
@@ -7,12 +8,14 @@ interface ChatInitTypes {
   setShowTicketForm: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const ChatInit: React.FC<ChatInitTypes> = ({ setMessages, setShowGrievanceForm, setShowTicketForm }) => {
+const ChatInit: React.FC<ChatInitTypes> = ({
+  setMessages,
+  setShowGrievanceForm,
+  setShowTicketForm,
+}) => {
+  const { t } = useTranslation();
   const addMessage = (message: string) => {
-    setMessages((prev) => [
-      ...prev,
-      { text: message, isUser: true }
-    ]);
+    setMessages((prev) => [...prev, { text: message, isUser: true }]);
     if (message === "Raise Grievance") {
       setShowGrievanceForm(true);
     } else if (message === "Book Ticket") {
@@ -26,13 +29,13 @@ const ChatInit: React.FC<ChatInitTypes> = ({ setMessages, setShowGrievanceForm, 
         className="flex-1 h-48 text-center bg-gray-400 shadow-lg rounded-lg cursor-pointer flex items-center justify-center"
         onClick={() => addMessage("Raise Grievance")}
       >
-        Raise Grievance
+        {t('raiseGrievance')}
       </div>
       <div
         className="flex-1 h-48 text-center bg-gray-400 shadow-lg rounded-lg cursor-pointer flex items-center justify-center"
         onClick={() => addMessage("Book Ticket")}
       >
-        Book Ticket
+        {t('bookTicket')}
       </div>
     </div>
   );

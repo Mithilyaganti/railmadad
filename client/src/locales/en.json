@@ -1,0 +1,61 @@
+{ 
+    "Navbar": "Navbar",
+    "railmadad": "RailMadad",
+    "assistanceGrievance": "For Inquiry, Assistance & Grievance Redressal",
+    "forMedicalAssistance": "For Medical Assistance",
+
+
+    "Sidebar": "Sidebar",
+    "raiseGrievance": "Raise Grievance",
+    "chatBot": "ChatBot",
+    "trackComplaint": "Track Complaint",
+    "feedback": "Feedback",
+
+
+    "bookTicket": "Book Ticket",
+    "submit": "Submit",
+    "from": "From",
+    "to": "To",
+    "date": "Date",
+    "passengers": "Number of Passengers",
+    "class": "Class",
+    "economy": "Economy",
+    "business": "Business",
+    "firstClass": "First Class",
+    
+    "name": "Name",
+    "phoneNumber": "Phone Number",
+    "email": "Email",
+    "pnr": "PNR",
+    "station": "Station",
+    "grievanceType": "Grievance Type",
+    "selectGrievanceType": "Select Grievance Type",
+    "delay": "Train Delay",
+    "cancellation": "Cancellation",
+    "refund": "Refund",
+    "injury": "Injury",
+    "cleanliness": "Cleanliness Issue",
+    "food": "Food Quality",
+    "staff": "Staff Behaviour",
+    "security": "Security",
+    "other": "Other",
+    "description": "Description",
+    "upload": "Upload Image",
+    "submitGrievance": "Submit Grievance",
+
+
+    "bookTicketButton": "Book Ticket",
+    "selectClass": "Select Class",
+    "typeYourMessage": "Type your message...",
+    "send": "Send",
+
+    "referenceNumber": "Reference Number",
+    "status": "Status",
+    "enterRefNo": "Enter Reference Number",
+
+    "rateYourExperience": "Rate Your Experience",
+    "comments": "Comments",
+    "submitFeedback": "Submit Feedback",
+    "yourFeedback": "Your Feedback"
+
+  }

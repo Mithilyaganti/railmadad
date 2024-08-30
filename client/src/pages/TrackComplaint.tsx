@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import apiClient from "../config/axios";
+import { useTranslation } from "react-i18next";
 
 const TrackComplaint: React.FC = () => {
   const [refno, setRefno] = useState("");
   const [complaintStatus, setComplaintStatus] = useState<string | null>(null);
+  const {t} = useTranslation();
 
   const handleTrack = async () => {
     setComplaintStatus(null);
@@ -42,13 +44,13 @@ const TrackComplaint: React.FC = () => {
           className="block text-gray-700 text-sm font-bold mb-2"
           htmlFor="refno"
         >
-          Reference Number
+          {t("referenceNumber")}
         </label>
         <input
           className="shadow  border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
           id="refno"
           type="text"
-          placeholder="Enter your Reference Number"
+          placeholder={t("enterRefNo")}
           value={refno}
           onChange={(e) => setRefno(e.target.value)}
         />
@@ -59,7 +61,7 @@ const TrackComplaint: React.FC = () => {
           type="button"
           onClick={handleTrack}
         >
-          Track Complaint
+          {t('trackComplaint')}
         </button>
       </div>
       {complaintStatus && (

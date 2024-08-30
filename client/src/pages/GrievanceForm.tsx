@@ -1,5 +1,6 @@
 import React, { useState, ChangeEvent, FormEvent } from "react";
 import apiClient from "../config/axios";
+import { useTranslation } from "react-i18next";
 
 export interface GrievanceTypes {
   name: string;
@@ -24,6 +25,7 @@ const RailMadadGrievanceForm: React.FC = () => {
     image: null,
   });
   const [refno, setRefno] = useState<string | null>(null);
+  const { t } = useTranslation();
   const handleChange = (
     e: ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>
   ) => {
@@ -58,7 +60,7 @@ const RailMadadGrievanceForm: React.FC = () => {
   return (
     <div className="bg-gray-800 p-4 sm:p-6 min-h-screen text-gray-200">
       <h2 className="text-2xl sm:text-3xl font-bold text-[#ff9999] mb-4 border-b-2 border-[#ff9999] pb-2">
-        Raise Grievance
+        {t("raiseGrievance")}
       </h2>
       <form onSubmit={handleSubmit} className="space-y-4">
         <div className="grid grid-cols-1 gap-4">
@@ -67,7 +69,7 @@ const RailMadadGrievanceForm: React.FC = () => {
               htmlFor="name"
               className="block text-sm font-medium text-gray-300 mb-1"
             >
-              Name
+              {t("name")}
             </label>
             <input
               type="text"
@@ -84,7 +86,7 @@ const RailMadadGrievanceForm: React.FC = () => {
               htmlFor="phone"
               className="block text-sm font-medium text-gray-300 mb-1"
             >
-              Phone Number
+              {t("phoneNumber")}
             </label>
             <input
               type="tel"
@@ -103,7 +105,7 @@ const RailMadadGrievanceForm: React.FC = () => {
               htmlFor="email"
               className="block text-sm font-medium text-gray-300 mb-1"
             >
-              Email
+              {t("email")}
             </label>
             <input
               type="email"
@@ -120,7 +122,7 @@ const RailMadadGrievanceForm: React.FC = () => {
               htmlFor="pnr"
               className="block text-sm font-medium text-gray-300 mb-1"
             >
-              PNR Number
+              {t("pnr")}
             </label>
             <input
               type="text"
@@ -140,7 +142,7 @@ const RailMadadGrievanceForm: React.FC = () => {
               htmlFor="station"
               className="block text-sm font-medium text-gray-300 mb-1"
             >
-              Station
+              {t("station")}
             </label>
             <input
               type="text"
@@ -158,7 +160,7 @@ const RailMadadGrievanceForm: React.FC = () => {
               htmlFor="grievancetype"
               className="block text-sm font-medium text-gray-300 mb-1"
             >
-              Grievance Type
+              {t("grievanceType")}
             </label>
             <select
               id="grievancetype"
@@ -168,16 +170,16 @@ const RailMadadGrievanceForm: React.FC = () => {
               required
               className="mt-1 h-8 block w-full rounded-md bg-gray-600 border-gray-500 text-white focus:border-red-400 focus:ring-red-400 text-sm"
             >
-              <option value="">Select a grievance type</option>
-              <option value="delay">Train Delay</option>
-              <option value="cancellation">Cancellation</option>
-              <option value="refund">Refund</option>
-              <option value="injury">injury</option>
-              <option value="cleanliness">Cleanliness Issue</option>
-              <option value="food">Food Quality</option>
-              <option value="staff">Staff Behavior</option>
-              <option value="security">Security</option>
-              <option value="other">Other</option>
+              <option value="">{t("selectGrievanceType")}</option>
+              <option value="delay">{t("delay")}</option>
+              <option value="cancellation">{t("cancellation")}</option>
+              <option value="refund">{t("refund")}</option>
+              <option value="injury">{t("injury")}</option>
+              <option value="cleanliness">{t("cleanliness")}</option>
+              <option value="food">{t("food")}</option>
+              <option value="staff">{t("staff")}</option>
+              <option value="security">{t("security")}</option>
+              <option value="other">{t("other")}</option>
             </select>
           </div>
         </div>
@@ -186,7 +188,7 @@ const RailMadadGrievanceForm: React.FC = () => {
             htmlFor="image"
             className="block text-sm font-medium text-gray-300 mb-1"
           >
-            Upload Image
+            {t("upload")}
           </label>
           <input
             type="file"
@@ -208,7 +210,7 @@ const RailMadadGrievanceForm: React.FC = () => {
             htmlFor="description"
             className="block text-sm font-medium text-gray-300 mb-1"
           >
-            Description
+            {t("description")}
           </label>
           <textarea
             id="description"
@@ -233,7 +235,7 @@ const RailMadadGrievanceForm: React.FC = () => {
             type="submit"
             className="w-full sm:w-auto px-4 sm:px-6 py-2 bg-[#ff9999] text-gray-900 font-semibold rounded-md hover:bg-[#ffb3b3] focus:outline-none focus:ring-2 focus:ring-[#ff9999] focus:ring-offset-2 focus:ring-offset-gray-800 transition duration-150 ease-in-out transform hover:-translate-y-1 hover:scale-105 text-sm"
           >
-            Submit Grievance
+            {t("submitGrievance")}
           </button>
         </div>
       </form>

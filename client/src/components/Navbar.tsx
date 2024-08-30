@@ -1,14 +1,18 @@
 import React from "react";
 import g20Logo from "../assets/image.png";
+import { useTranslation } from "react-i18next";
+import { useLanguage } from "../context/LanguageContext";
 
 const Navbar: React.FC = () => {
+  const { t } = useTranslation();
+  const { language, setLanguage } = useLanguage();
   return (
     <nav className="max-w-7xl bg-white shadow-md w-full mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16">
       <div className="flex items-center">
         <img src={g20Logo} alt="G20 Logo" className="h-8 w-auto mr-2" />
-        <p className="text-4xl font-bold text-[#75002b]">RailMadad</p>
+        <p className="text-4xl font-bold text-[#75002b]">{t('railmadad')}</p>
         <p className="px-4 text-sm text-gray-600">
-          For Inquiry, Assistance & Grievance Redressal
+          {t('assistanceGrievance')}
         </p>
       </div>
       <div className="flex items-center space-x-4">
@@ -24,14 +28,16 @@ const Navbar: React.FC = () => {
           139
         </div>
         <div className="text-sm text-gray-600">
-          for Security/Medical Assistance
+          {t('forMedicalAssistance')}
         </div>
         <select
-          className="bg-gray-100 border border-gray-300 rounded-md px-2 py-1 text-sm"
-          onChange={(e) => console.log(e.target.value)}
+          value={language}
+          onChange={(e) => setLanguage(e.target.value)}
+          className="bg-white text-blue-500 p-2 rounded"
         >
-          <option>English</option>
-          <option>Telugu</option>
+          <option value="en">English</option>
+          <option value="te">తెలుగు</option>
+          <option value="hi">हिन्दी</option>
         </select>
         <div className="bg-blue-700 rounded-full w-10">
           <img
