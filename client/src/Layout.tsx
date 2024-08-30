@@ -1,5 +1,5 @@
 import React from 'react';
-import Sidebar from './components/SideBar';
+import Sidebar from './components/Sidebar';
 import Navbar from './components/Navbar';
 
 interface LayoutProps {
@@ -12,7 +12,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
       <Navbar />
       <div className="flex flex-1 overflow-hidden">
         <Sidebar />
-        <main className="flex-1 overflow-x-hidden overflow-y-auto bg-gray-100 p-6">
+        <main className="flex-1 overflow-x-hidden overflow-y-auto bg-gray-100 ">
           {children}
         </main>
       </div>
