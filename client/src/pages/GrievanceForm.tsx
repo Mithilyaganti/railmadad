@@ -23,7 +23,7 @@ const RailMadadGrievanceForm: React.FC = () => {
     description: "",
     image: null,
   });
-
+  const [refno, setRefno] = useState<string | null>(null);
   const handleChange = (
     e: ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>
   ) => {
@@ -50,6 +50,7 @@ const RailMadadGrievanceForm: React.FC = () => {
         withCredentials: true,
       });
       console.log(response.data);
+      setRefno(response.data.refno);
     } catch (error) {
       console.error("Error submitting grievance:", error);
     }
@@ -57,7 +58,9 @@ const RailMadadGrievanceForm: React.FC = () => {
 
   return (
     <div className="bg-gray-800 p-4 sm:p-6 min-h-screen text-gray-200">
-      <h2 className="text-2xl sm:text-3xl font-bold text-[#ff9999] mb-4 border-b-2 border-[#ff9999] pb-2">Raise Grievance</h2>
+      <h2 className="text-2xl sm:text-3xl font-bold text-[#ff9999] mb-4 border-b-2 border-[#ff9999] pb-2">
+        Raise Grievance
+      </h2>
       <form onSubmit={handleSubmit} className="space-y-4">
         <div className="grid grid-cols-1 gap-4">
           <div className="bg-gray-700 p-3 rounded-lg shadow-md border-l-4 border-blue-400">
@@ -218,6 +221,13 @@ const RailMadadGrievanceForm: React.FC = () => {
             className="mt-1 block w-full rounded-md bg-gray-600 border-gray-500 text-white placeholder-gray-400 focus:border-indigo-400 focus:ring-indigo-400 text-sm"
           ></textarea>
         </div>
+
+        {refno && (
+          <div className="bg-green-500 text-white p-4 rounded-lg">
+            Your grievance has been submitted successfully. Your reference
+            number is <strong>{refno}</strong>.
+          </div>
+        )}
 
         <div className="flex justify-end">
           <button

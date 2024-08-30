@@ -9,12 +9,16 @@ from flask_cors import CORS
 import os
 from dotenv import load_dotenv
 from db.supabasecrud import create
+import random, string
 
 load_dotenv()
  
 UPLOAD_FOLDER = os.path.join(os.getcwd(), "uploads")
 if not os.path.exists(UPLOAD_FOLDER):
     os.makedirs(UPLOAD_FOLDER)
+    
+def genRefNo():
+    return "".join(random.choices(string.digits, k=6))
 
 
 app = Flask(__name__)
@@ -34,9 +38,10 @@ def raise_grievance():
     if file:
         print(f"File received: {file.filename}")
         file.save(os.path.join(UPLOAD_FOLDER, file.filename))
-
+    refno = genRefNo()
     # Save grievance data to Supabase
     data = {
+        "date": "2024-08-30",
         "name": name,
         "phone": phone,
         "email": email,
@@ -45,11 +50,12 @@ def raise_grievance():
         "description": description,
         "file": file.filename if file else "",
         "querytype": "grievance",
-        "status": "pending"
+        "status": "pending",
+        "refno": refno
     }
     create("railmadad", data=data)
     
-    return jsonify({"message": "Grievance submitted successfully"})
+    return jsonify({"message": "Grievance submitted successfully", "refno": refno})
 
 
 @app.route("/book-ticket", methods=["POST"])
