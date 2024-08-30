@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import ChatInit from "../components/ChatInit";
 import ChatbotGrievanceForm from "../components/ChatbotGrievanceFrom";
 import TicketBookingForm from "../components/TicketBookingForm";
+import apiClient from "../config/axios";
+import { GrievanceTypes } from "./GrievanceForm";
 
 export interface ChatMessageTypes {
   text: string;
@@ -28,21 +30,26 @@ const Chatbot: React.FC = () => {
       setInput("");
     }
   };
-  console.log(messages);
 
-  const handleGrievanceSubmit = async (formData: any) => {
+  const handleGrievanceSubmit = async (formData: GrievanceTypes) => {
+    const formPayload = new FormData();
+    Object.entries(formData).forEach(([key, value]) => {
+      if (value !== null) {
+        formPayload.append(key, value);
+      }
+    });
     try {
-      const response = await fetch("/api/raise-grievance", {
-        method: "POST",
+      const response = await apiClient.post("/raise-grievance", formPayload, {
         headers: {
-          "Content-Type": "application/json",
+          "Content-Type": "multipart/form-data",
         },
-        body: JSON.stringify(formData),
       });
-      if (response.ok) {
+
+      if (response.data.success) {
         setMessages([
           ...messages,
           { text: "Grievance submitted successfully!", isUser: false },
+          { text: `Reference Number ${response.data.refno}`, isUser: false },
         ]);
       } else {
         setMessages([
@@ -62,7 +69,7 @@ const Chatbot: React.FC = () => {
     setShowGrievanceForm(false);
   };
 
-  const handleTicketBooking = (formData: any) => {
+  const handleTicketBooking = async (formData: any) => {
     setMessages([
       ...messages,
       {
@@ -70,6 +77,35 @@ const Chatbot: React.FC = () => {
         isUser: false,
       },
     ]);
+    try {
+      const response = await apiClient.post("/book-ticket", formData);
+      if (response.data.success) {
+        setMessages([
+          ...messages,
+          {
+            text: "Ticket Booking Request submitted successfully!",
+            isUser: false,
+          },
+          { text: `Reference Number ${response.data.refno}`, isUser: false },
+        ]);
+      } else {
+        setMessages([
+          ...messages,
+          {
+            text: `Failed to book ticket. Please try again later.`,
+            isUser: false,
+          },
+        ]);
+      }
+    } catch (error) {
+      setMessages([
+        ...messages,
+        {
+          text: `Failed to book ticket. Please try again later.`,
+          isUser: false,
+        },
+      ]);
+    }
     setShowTicketForm(false);
   };
 

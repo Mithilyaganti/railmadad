@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { FormEvent, useState } from "react";
 import { GrievanceTypes } from "../pages/GrievanceForm";
 
 interface ChatbotGrievanceFormProps {
@@ -9,13 +9,13 @@ const ChatbotGrievanceForm: React.FC<ChatbotGrievanceFormProps> = ({
   onSubmit,
 }) => {
   const [formData, setFormData] = useState<GrievanceTypes>({
-    name: '',
-    phone: '',
-    email: '',
-    pnr: '',
-    station: '',
-    grievancetype: '',
-    description: '',
+    name: "",
+    phone: "",
+    email: "",
+    pnr: "",
+    station: "",
+    grievancetype: "",
+    description: "",
     image: null,
   });
 
@@ -27,7 +27,7 @@ const ChatbotGrievanceForm: React.FC<ChatbotGrievanceFormProps> = ({
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     onSubmit(formData);
   };
@@ -44,8 +44,8 @@ const ChatbotGrievanceForm: React.FC<ChatbotGrievanceFormProps> = ({
         required
       />
       <input
-        type="tel"
-        name="phoneNumber"
+        type="number"
+        name="phone"
         value={formData.phone}
         onChange={handleChange}
         placeholder="Phone Number"
@@ -80,7 +80,7 @@ const ChatbotGrievanceForm: React.FC<ChatbotGrievanceFormProps> = ({
         required
       />
       <select
-        name="grievanceType"
+        name="grievancetype"
         value={formData.grievancetype}
         onChange={handleChange}
         className="w-full p-2 border rounded"
@@ -97,6 +97,7 @@ const ChatbotGrievanceForm: React.FC<ChatbotGrievanceFormProps> = ({
         <option value="security">Security</option>
         <option value="other">Other</option>
       </select>
+
       <textarea
         name="description"
         value={formData.description}

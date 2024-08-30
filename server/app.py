@@ -8,7 +8,7 @@ from flask import Flask, request, jsonify
 from flask_cors import CORS
 import os
 from dotenv import load_dotenv
-from db.supabasecrud import create
+from db.supabasecrud import create, get_by_column
 import random, string
 
 load_dotenv()
@@ -31,9 +31,9 @@ def raise_grievance():
     phone = request.form.get("phone")
     email = request.form.get("email")
     pnr = request.form.get("pnr")
-    grievance_type = request.form.get("grievanceType")
+    grievance_type = request.form.get("grievancetype")
     description = request.form.get("description")
-
+    
     file = request.files.get("image")
     if file:
         print(f"File received: {file.filename}")
@@ -41,7 +41,6 @@ def raise_grievance():
     refno = genRefNo()
     # Save grievance data to Supabase
     data = {
-        "date": "2024-08-30",
         "name": name,
         "phone": phone,
         "email": email,
@@ -53,14 +52,37 @@ def raise_grievance():
         "status": "pending",
         "refno": refno
     }
-    create("railmadad", data=data)
+
+    print(data)
     
-    return jsonify({"message": "Grievance submitted successfully", "refno": refno})
+    try:
+        create("railmadad", data=data)
+        return jsonify({"success": True,"message": "Grievance submitted successfully", "refno": refno})
+    except Exception as e:
+        return jsonify({"success": False, "message": str(e)})
 
 
 @app.route("/book-ticket", methods=["POST"])
 def book_ticket():
-    return jsonify({"message": "Ticket booked successfully"})
+    refno = genRefNo()
+    print(request.form)
+    return jsonify({"success": True, "message": "Ticket booked successfully", "refno": refno})
+
+@app.route("/track-complaint", methods=["GET"])
+def track_complaint():
+    refno = request.args.get("refno")
+    try:
+        complaint = get_by_column("railmadad", "refno", refno)
+        if complaint is None or len(complaint) == 0:
+            return jsonify({"success": False, "message": "Complaint not found"})
+    except Exception as e:
+        return jsonify({"success": False, "message": str(e)})
+    
+    return jsonify({
+        "success": True, 
+        "message": "Complaint found, please wait while being processed", 
+        "data": complaint
+    })
 
 if __name__ == "__main__":
     app.run(debug=True)

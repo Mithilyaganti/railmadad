@@ -20,6 +20,10 @@ def get_all(table: str):
 def get_by_id(table: str, id: int):
     return supabase.table(table).select("*").eq("id", id).execute()
 
+def get_by_column(table: str, column: str, value: str):
+    response = supabase.table(table).select("*").eq(column, value).execute()
+    return response.data[0] if response.data else None
+
 def create(table: str, data: dict):
     return supabase.table(table).insert(data).execute()
 

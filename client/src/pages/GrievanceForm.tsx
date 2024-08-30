@@ -47,7 +47,6 @@ const RailMadadGrievanceForm: React.FC = () => {
         headers: {
           "Content-Type": "multipart/form-data",
         },
-        withCredentials: true,
       });
       console.log(response.data);
       setRefno(response.data.refno);
@@ -77,7 +76,7 @@ const RailMadadGrievanceForm: React.FC = () => {
               value={formData.name}
               onChange={handleChange}
               required
-              className="mt-1 block w-full rounded-md bg-gray-600 border-gray-500 text-white placeholder-gray-400 focus:border-blue-400 focus:ring-blue-400 text-sm"
+              className="mt-1 h-8 block w-full rounded-md bg-gray-600 border-gray-500 text-white placeholder-gray-400 focus:border-blue-400 focus:ring-blue-400 text-sm"
             />
           </div>
           <div className="bg-gray-700 p-3 rounded-lg shadow-md border-l-4 border-green-400">
@@ -94,7 +93,7 @@ const RailMadadGrievanceForm: React.FC = () => {
               value={formData.phone}
               onChange={handleChange}
               required
-              className="mt-1 block w-full rounded-md bg-gray-600 border-gray-500 text-white placeholder-gray-400 focus:border-green-400 focus:ring-green-400 text-sm"
+              className="mt-1 h-8 block w-full rounded-md bg-gray-600 border-gray-500 text-white placeholder-gray-400 focus:border-green-400 focus:ring-green-400 text-sm"
             />
           </div>
         </div>
@@ -113,7 +112,7 @@ const RailMadadGrievanceForm: React.FC = () => {
               value={formData.email}
               onChange={handleChange}
               required
-              className="mt-1 block w-full rounded-md bg-gray-600 border-gray-500 text-white placeholder-gray-400 focus:border-purple-400 focus:ring-purple-400 text-sm"
+              className="mt-1 h-8 block w-full rounded-md bg-gray-600 border-gray-500 text-white placeholder-gray-400 focus:border-purple-400 focus:ring-purple-400 text-sm"
             />
           </div>
           <div className="bg-gray-700 p-3 rounded-lg shadow-md border-l-4 border-yellow-400">
@@ -130,7 +129,7 @@ const RailMadadGrievanceForm: React.FC = () => {
               value={formData.pnr}
               onChange={handleChange}
               required
-              className="mt-1 block w-full rounded-md bg-gray-600 border-gray-500 text-white placeholder-gray-400 focus:border-yellow-400 focus:ring-yellow-400 text-sm"
+              className="mt-1 h-8 block w-full rounded-md bg-gray-600 border-gray-500 text-white placeholder-gray-400 focus:border-yellow-400 focus:ring-yellow-400 text-sm"
             />
           </div>
         </div>
@@ -150,7 +149,7 @@ const RailMadadGrievanceForm: React.FC = () => {
               value={formData.station}
               onChange={handleChange}
               required
-              className="mt-1 block w-full rounded-md bg-gray-600 border-gray-500 text-white placeholder-gray-400 focus:border-yellow-400 focus:ring-yellow-400 text-sm"
+              className="mt-1 h-8 block w-full rounded-md bg-gray-600 border-gray-500 text-white placeholder-gray-400 focus:border-yellow-400 focus:ring-yellow-400 text-sm"
             />
           </div>
 
@@ -167,7 +166,7 @@ const RailMadadGrievanceForm: React.FC = () => {
               value={formData.grievancetype}
               onChange={handleChange}
               required
-              className="mt-1 block w-full rounded-md bg-gray-600 border-gray-500 text-white focus:border-red-400 focus:ring-red-400 text-sm"
+              className="mt-1 h-8 block w-full rounded-md bg-gray-600 border-gray-500 text-white focus:border-red-400 focus:ring-red-400 text-sm"
             >
               <option value="">Select a grievance type</option>
               <option value="delay">Train Delay</option>
