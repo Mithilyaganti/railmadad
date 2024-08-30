@@ -11,8 +11,7 @@ const ChatInit: React.FC<ChatInitTypes> = ({ setMessages, setShowGrievanceForm, 
   const addMessage = (message: string) => {
     setMessages((prev) => [
       ...prev,
-      { text: message, isUser: true },
-      { text: `You selected: ${message}`, isUser: false },
+      { text: message, isUser: true }
     ]);
     if (message === "Raise Grievance") {
       setShowGrievanceForm(true);

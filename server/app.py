@@ -51,5 +51,11 @@ def raise_grievance():
     
     return jsonify({"message": "Grievance submitted successfully"})
 
+
+@app.route("/book-ticket", methods=["POST"])
+def book_ticket():
+    return jsonify({"message": "Ticket booked successfully"})
+
 if __name__ == "__main__":
     app.run(debug=True)
+

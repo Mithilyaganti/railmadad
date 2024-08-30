@@ -93,10 +93,10 @@ const Chatbot: React.FC = () => {
               {message.text}
             </div>
           ))}
-          {showGrievanceForm && messages.length == 2 && (
+          {showGrievanceForm && messages.length == 1 && (
             <ChatbotGrievanceForm onSubmit={handleGrievanceSubmit} />
           )}
-          {showTicketForm && messages.length == 2 && (
+          {showTicketForm && messages.length == 1 && (
             <TicketBookingForm onSubmit={handleTicketBooking} />
           )}
         </div>

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { GrievanceTypes } from "../pages/GrievanceForm";
 
 interface ChatbotGrievanceFormProps {
   onSubmit: (formData: any) => void;
@@ -7,14 +8,15 @@ interface ChatbotGrievanceFormProps {
 const ChatbotGrievanceForm: React.FC<ChatbotGrievanceFormProps> = ({
   onSubmit,
 }) => {
-  const [formData, setFormData] = useState({
-    name: "",
-    phoneNumber: "",
-    pnr: "",
-    email: "",
-    station: "",
-    grievanceType: "",
-    description: "",
+  const [formData, setFormData] = useState<GrievanceTypes>({
+    name: '',
+    phone: '',
+    email: '',
+    pnr: '',
+    station: '',
+    grievancetype: '',
+    description: '',
+    image: null,
   });
 
   const handleChange = (
@@ -44,7 +46,7 @@ const ChatbotGrievanceForm: React.FC<ChatbotGrievanceFormProps> = ({
       <input
         type="tel"
         name="phoneNumber"
-        value={formData.phoneNumber}
+        value={formData.phone}
         onChange={handleChange}
         placeholder="Phone Number"
         className="w-full p-2 border rounded"
@@ -79,7 +81,7 @@ const ChatbotGrievanceForm: React.FC<ChatbotGrievanceFormProps> = ({
       />
       <select
         name="grievanceType"
-        value={formData.grievanceType}
+        value={formData.grievancetype}
         onChange={handleChange}
         className="w-full p-2 border rounded"
         required
@@ -88,8 +90,8 @@ const ChatbotGrievanceForm: React.FC<ChatbotGrievanceFormProps> = ({
         <option value="delay">Delay</option>
         <option value="cancellation">Cancellation</option>
         <option value="refund">Refund</option>
-        <option value="sanitation">Sanitation</option>
-        <option value="Injury">Injury</option>
+        <option value="injury">Injury</option>
+        <option value="cleanliness">Cleanliness Issue</option>
         <option value="food">Food</option>
         <option value="staff">Staff</option>
         <option value="security">Security</option>
