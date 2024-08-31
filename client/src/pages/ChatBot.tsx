@@ -18,17 +18,32 @@ const Chatbot: React.FC = () => {
   const [showTicketForm, setShowTicketForm] = useState(false);
   const { t } = useTranslation();
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (input.trim()) {
       setMessages([...messages, { text: input, isUser: true }]);
-      setMessages((prev) => [
-        ...prev,
-        {
-          text: "Thank you for your message. An agent will respond shortly.",
-          isUser: false,
-        },
-      ]);
+      try {
+        const response = await apiClient.post("/chatbot", { message: input });
+        if (response.data.success) {
+          setMessages((prev) => [
+            ...prev,
+            { text: response.data.response, isUser: false },
+          ]);
+        } else {
+          setMessages((prev) => [
+            ...prev,
+            {
+              text: "An error occurred. Please try again later.",
+              isUser: false,
+            },
+          ]);
+        }
+      } catch (error) {
+        setMessages((prev) => [
+          ...prev,
+          { text: "An error occurred. Please try again later.", isUser: false },
+        ]);
+      }
       setInput("");
     }
   };
@@ -120,7 +135,7 @@ const Chatbot: React.FC = () => {
           setShowTicketForm={setShowTicketForm}
         />
       ) : (
-        <div className="flex-1 overflow-y-auto p-4">
+        <div className="flex-1 overflow-y-auto p-4 mb-20">
           {messages.map((message, index) => (
             <div
               key={index}

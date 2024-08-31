@@ -1,15 +1,19 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 import os, sys
-from dotenv import load_dotenv
+from dotenv import load_dotenv, dotenv_values
+load_dotenv()
 from db.supabasecrud import create, get_by_column
 import random, string
+import google.generativeai as genai
 
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
-import Department_mapping.keyword_desc as kd
+# sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+# import Department_mapping.keyword_desc as kd
+
+genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
+model = genai.GenerativeModel("gemini-1.5-flash")
 
 
-load_dotenv()
  
 UPLOAD_FOLDER = os.path.join(os.getcwd(), "uploads")
 if not os.path.exists(UPLOAD_FOLDER):
@@ -85,6 +89,21 @@ def track_complaint():
         "message": "Complaint found, please wait while being processed", 
         "data": complaint
     })
+
+@app.route("/chatbot", methods=["POST"])
+def chatbot():
+    data = request.json
+    user_message = data.get("message")
+
+    if not user_message:
+        return jsonify({"success": False, "message": "No message provided"})
+
+    try:
+        response = model.generate_content(user_message) 
+        return jsonify({"success": True, "response": response.text})
+
+    except Exception as e:
+        return jsonify({"success": False, "message": str(e)})
 
 if __name__ == "__main__":
     app.run(debug=True)
