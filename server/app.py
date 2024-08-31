@@ -11,7 +11,9 @@ import google.generativeai as genai
 # import Department_mapping.keyword_desc as kd
 
 genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
-model = genai.GenerativeModel("gemini-1.5-flash")
+model = genai.GenerativeModel(
+    model_name="gemini-1.5-flash"
+)
 
 
  
@@ -99,8 +101,9 @@ def chatbot():
         return jsonify({"success": False, "message": "No message provided"})
 
     try:
-        response = model.generate_content(user_message) 
-        return jsonify({"success": True, "response": response.text})
+        response = model.generate_content(f"You are a Railmadad Chatbot of Indian Railways. you respond to user queries related to railways.If the user has any queries related to railways, you can respond to them. If the user has query not related to railways, grace fully repond with 'I am a Railmadad Chatbot of Indian Railways. I respond to user queries related to railways. If you have any queries related to railways, I can respond to them.' here is the user query: {user_message}, please respond to the user query in html format so that it can be displayed using dangerouslySetInnerHTML in react, only use h3, br, p, strong tags, dont give markdown.") 
+        aires = response.text[7:-5]
+        return jsonify({"success": True, "response": aires})
 
     except Exception as e:
         return jsonify({"success": False, "message": str(e)})

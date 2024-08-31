@@ -143,7 +143,7 @@ const Chatbot: React.FC = () => {
                 message.isUser ? "bg-blue-100 ml-auto" : "bg-gray-100"
               }`}
             >
-              {message.text}
+              <p dangerouslySetInnerHTML={{__html: message.text}}></p>
             </div>
           ))}
           {showGrievanceForm && messages.length == 1 && (
