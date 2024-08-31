@@ -1,9 +1,13 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS
-import os
+import os, sys
 from dotenv import load_dotenv
 from db.supabasecrud import create, get_by_column
 import random, string
+
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+import Department_mapping.keyword_desc as kd
+
 
 load_dotenv()
  
@@ -33,7 +37,10 @@ def raise_grievance():
         print(f"File received: {file.filename}")
         file.save(os.path.join(UPLOAD_FOLDER, file.filename))
     refno = genRefNo()
-    # Save grievance data to Supabase
+    
+    # dept = kd.departments(os.path.join(UPLOAD_FOLDER, file.filename), description)
+    dept = "railways"
+    
     data = {
         "name": name,
         "phone": phone,
@@ -44,10 +51,11 @@ def raise_grievance():
         "file": file.filename if file else "",
         "querytype": "grievance",
         "status": "pending",
-        "refno": refno
+        "refno": refno,
+        "department": dept if dept else "railways"
     }
 
-    print(data)
+    # print(data)
     
     try:
         create("railmadad", data=data)

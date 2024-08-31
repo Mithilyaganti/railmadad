@@ -218,7 +218,6 @@ const RailMadadGrievanceForm: React.FC = () => {
             value={formData.description}
             onChange={handleChange}
             rows={3}
-            required
             className="mt-1 block w-full rounded-md bg-gray-600 border-gray-500 text-white placeholder-gray-400 focus:border-indigo-400 focus:ring-indigo-400 text-sm"
           ></textarea>
         </div>
