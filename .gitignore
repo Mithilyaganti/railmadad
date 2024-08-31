@@ -1,0 +1,4 @@
+Department_mapping/*
+.env
+uploads
+server/db/__pycache__
