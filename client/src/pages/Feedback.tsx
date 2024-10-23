@@ -1,28 +1,30 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
+import { useTranslation } from "react-i18next";
 
 const Feedback: React.FC = () => {
   const [rating, setRating] = useState<number | null>(null);
-  const [comment, setComment] = useState('');
+  const [comment, setComment] = useState("");
+  const { t } = useTranslation();
 
   const handleSubmit = () => {
-    // Here you would typically send the feedback to your backend
-    console.log('Feedback submitted:', { rating, comment });
-    // Reset form
+    console.log("Feedback submitted:", { rating, comment });
     setRating(null);
-    setComment('');
+    setComment("");
   };
 
   return (
     <div className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
       <div className="mb-4">
         <label className="block text-gray-700 text-sm font-bold mb-2">
-          Rate your experience
+          {t("rateYourExperience")}
         </label>
         <div className="flex">
           {[1, 2, 3, 4, 5].map((star) => (
             <button
               key={star}
-              className={`text-3xl ${rating && rating >= star ? 'text-yellow-500' : 'text-gray-300'}`}
+              className={`text-3xl ${
+                rating && rating >= star ? "text-yellow-500" : "text-gray-300"
+              }`}
               onClick={() => setRating(star)}
             >
               ★
@@ -31,13 +33,16 @@ const Feedback: React.FC = () => {
         </div>
       </div>
       <div className="mb-6">
-        <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="comment">
-          Comments
+        <label
+          className="block text-gray-700 text-sm font-bold mb-2"
+          htmlFor="comment"
+        >
+          {t("submitFeedback")}
         </label>
         <textarea
           className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
           id="comment"
-          placeholder="Your feedback"
+          placeholder={t("yourFeedback")}
           value={comment}
           onChange={(e) => setComment(e.target.value)}
         ></textarea>
@@ -48,7 +53,7 @@ const Feedback: React.FC = () => {
           type="button"
           onClick={handleSubmit}
         >
-          Submit Feedback
+          {t("submitFeedback")}
         </button>
       </div>
     </div>

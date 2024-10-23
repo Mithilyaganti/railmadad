@@ -1,19 +1,23 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
+import { useTranslation } from "react-i18next";
 
 interface TicketBookingFormProps {
   onSubmit: (formData: any) => void;
 }
 
 const TicketBookingForm: React.FC<TicketBookingFormProps> = ({ onSubmit }) => {
+  const { t } = useTranslation();
   const [formData, setFormData] = useState({
-    from: '',
-    to: '',
-    date: '',
-    passengers: '',
-    class: '',
+    from: "",
+    to: "",
+    date: "",
+    passengers: "",
+    class: "",
   });
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+  ) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
@@ -29,7 +33,7 @@ const TicketBookingForm: React.FC<TicketBookingFormProps> = ({ onSubmit }) => {
         name="from"
         value={formData.from}
         onChange={handleChange}
-        placeholder="From"
+        placeholder={t("from")} 
         className="w-full p-2 border rounded"
         required
       />
@@ -38,7 +42,7 @@ const TicketBookingForm: React.FC<TicketBookingFormProps> = ({ onSubmit }) => {
         name="to"
         value={formData.to}
         onChange={handleChange}
-        placeholder="To"
+        placeholder={t("to")}
         className="w-full p-2 border rounded"
         required
       />
@@ -55,7 +59,7 @@ const TicketBookingForm: React.FC<TicketBookingFormProps> = ({ onSubmit }) => {
         name="passengers"
         value={formData.passengers}
         onChange={handleChange}
-        placeholder="Number of Passengers"
+        placeholder={t("passengers")}
         className="w-full p-2 border rounded"
         required
       />
@@ -66,13 +70,16 @@ const TicketBookingForm: React.FC<TicketBookingFormProps> = ({ onSubmit }) => {
         className="w-full p-2 border rounded"
         required
       >
-        <option value="">Select Class</option>
-        <option value="economy">Economy</option>
-        <option value="business">Business</option>
-        <option value="first">First Class</option>
+        <option value="">{t('class')}</option>
+        <option value="economy">{t('economy')}</option>
+        <option value="business">{t('business')}</option>
+        <option value="first">{t('firstClass')}</option>
       </select>
-      <button type="submit" className="w-full bg-blue-500 text-white p-2 rounded">
-        Book Ticket
+      <button
+        type="submit"
+        className="w-full bg-blue-500 text-white p-2 rounded"
+      >
+        {t("bookTicket")}
       </button>
     </form>
   );

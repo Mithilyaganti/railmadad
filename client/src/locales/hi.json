@@ -1,0 +1,64 @@
+{
+    "Navbar": "Navbar",
+    "railmadad": "रेलमदद",
+    "assistanceGrievance": "पूछताछ, सहायता एवं शिकायत निवारण के लिए",
+    "forMedicalAssistance": "चिकित्सा सहायता के लिए",
+    
+    
+    "Sidebar": "Sidebar",
+    "raiseGrievance": "शिकायत दर्ज करें",
+    "chatBot": "चैटबॉट",
+    "trackComplaint": "शिकायत का पता लगाएं",
+    "feedback": "प्रतिक्रिया",
+
+
+
+    "bookTicket": "टिकट बुक करें",
+    "submit": "जमा करें",
+    "from": "से",
+    "to": "तक",
+    "date": "तारीख",
+    "passengers": "यात्रियों की संख्या",
+    "class": "श्रेणी",
+    "economy": "इकोनॉमी",
+    "business": "बिजनेस",
+    "firstClass": "फर्स्ट क्लास",
+    
+    
+    "name": "नाम",
+    "phoneNumber": "फोन नंबर",
+    "email": "ईमेल",
+    "pnr": "पीएनआर",
+    "station": "स्टेशन",
+    "grievanceType": "शिकायत प्रकार",
+    "selectGrievanceType": "शिकायत प्रकार चुनें",
+    "delay": "ट्रेन में देरी",
+    "cancellation": "रद्दीकरण",
+    "refund": "रिफंड",
+    "injury": "चोट",
+    "cleanliness": "सफाई समस्या",
+    "food": "खाने की गुणवत्ता",
+    "staff": "कर्मचारी व्यवहार",
+    "security": "सुरक्षा", 
+    "other": "अन्य",
+    "description": "विवरण",
+    "upload": "छवि अपलोड करें",
+    "submitGrievance": "शिकायत दर्ज करें",
+
+
+    "bookTicketButton": "टिकट बुक करें",
+    "selectClass": "श्रेणी चुनें",
+    "typeYourMessage": "अपना संदेश टाइप करें...",
+    "send": "भेजें",
+
+
+    "referenceNumber": "संदर्भ संख्या",
+    "status": "स्थिति",
+    "enterRefNo": "संदर्भ संख्या दर्ज करें",
+
+
+    "rateYourExperience": "अपने अनुभव का मूल्यांकन करें",
+    "comments": "टिप्पणियाँ",
+    "submitFeedback": "प्रतिक्रिया दर्ज करें",
+    "yourFeedback": "आपकी प्रतिक्रिया"
+  }

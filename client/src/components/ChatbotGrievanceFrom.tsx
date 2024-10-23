@@ -1,4 +1,6 @@
-import React, { useState } from "react";
+import React, { FormEvent, useState } from "react";
+import { GrievanceTypes } from "../pages/GrievanceForm";
+import { useTranslation } from "react-i18next";
 
 interface ChatbotGrievanceFormProps {
   onSubmit: (formData: any) => void;
@@ -7,14 +9,16 @@ interface ChatbotGrievanceFormProps {
 const ChatbotGrievanceForm: React.FC<ChatbotGrievanceFormProps> = ({
   onSubmit,
 }) => {
-  const [formData, setFormData] = useState({
+  const {t} = useTranslation();
+  const [formData, setFormData] = useState<GrievanceTypes>({
     name: "",
-    phoneNumber: "",
-    pnr: "",
+    phone: "",
     email: "",
+    pnr: "",
     station: "",
-    grievanceType: "",
+    grievancetype: "",
     description: "",
+    image: null,
   });
 
   const handleChange = (
@@ -25,7 +29,7 @@ const ChatbotGrievanceForm: React.FC<ChatbotGrievanceFormProps> = ({
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     onSubmit(formData);
   };
@@ -37,16 +41,16 @@ const ChatbotGrievanceForm: React.FC<ChatbotGrievanceFormProps> = ({
         name="name"
         value={formData.name}
         onChange={handleChange}
-        placeholder="Name"
+        placeholder={t("name")}
         className="w-full p-2 border rounded"
         required
       />
       <input
-        type="tel"
-        name="phoneNumber"
-        value={formData.phoneNumber}
+        type="number"
+        name="phone"
+        value={formData.phone}
         onChange={handleChange}
-        placeholder="Phone Number"
+        placeholder={t("phoneNumber")}
         className="w-full p-2 border rounded"
         required
       />
@@ -55,7 +59,7 @@ const ChatbotGrievanceForm: React.FC<ChatbotGrievanceFormProps> = ({
         name="pnr"
         value={formData.pnr}
         onChange={handleChange}
-        placeholder="PNR"
+        placeholder={t("pnr")}
         className="w-full p-2 border rounded"
         required
       />
@@ -64,7 +68,7 @@ const ChatbotGrievanceForm: React.FC<ChatbotGrievanceFormProps> = ({
         name="email"
         value={formData.email}
         onChange={handleChange}
-        placeholder="Email"
+        placeholder={t("email")}
         className="w-full p-2 border rounded"
         required
       />
@@ -73,33 +77,34 @@ const ChatbotGrievanceForm: React.FC<ChatbotGrievanceFormProps> = ({
         name="station"
         value={formData.station}
         onChange={handleChange}
-        placeholder="Station Name"
+        placeholder={t("station")}
         className="w-full p-2 border rounded"
         required
       />
       <select
-        name="grievanceType"
-        value={formData.grievanceType}
+        name="grievancetype"
+        value={formData.grievancetype}
         onChange={handleChange}
         className="w-full p-2 border rounded"
         required
       >
-        <option value="">Select Grievance Type</option>
-        <option value="delay">Delay</option>
-        <option value="cancellation">Cancellation</option>
-        <option value="refund">Refund</option>
-        <option value="sanitation">Sanitation</option>
-        <option value="Injury">Injury</option>
-        <option value="food">Food</option>
-        <option value="staff">Staff</option>
-        <option value="security">Security</option>
-        <option value="other">Other</option>
+        <option value="">{t('selectGrievanceType')}</option>
+        <option value="delay">{t('delay')}</option>
+        <option value="cancellation">{t('cancellation')}</option>
+        <option value="refund">{t('refund')}</option>
+        <option value="injury">{t('injury')}</option>
+        <option value="cleanliness">{t('cleanliness')}</option>
+        <option value="food">{t('food')}</option>
+        <option value="staff">{t('staff')}</option>
+        <option value="security">{t('security')}</option>
+        <option value="other">{t('other')}</option>
       </select>
+
       <textarea
         name="description"
         value={formData.description}
         onChange={handleChange}
-        placeholder="Description"
+        placeholder={t("description")}
         className="w-full p-2 border rounded"
         required
       />
@@ -107,7 +112,7 @@ const ChatbotGrievanceForm: React.FC<ChatbotGrievanceFormProps> = ({
         type="submit"
         className="w-full bg-blue-500 text-white p-2 rounded"
       >
-        Submit Grievance
+        {t('submitGrievance')}
       </button>
     </form>
   );

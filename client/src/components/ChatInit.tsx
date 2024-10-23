@@ -1,5 +1,6 @@
 import React from "react";
 import { ChatMessageTypes } from "../pages/ChatBot";
+import { useTranslation } from "react-i18next";
 
 interface ChatInitTypes {
   setMessages: React.Dispatch<React.SetStateAction<ChatMessageTypes[]>>;
@@ -7,13 +8,14 @@ interface ChatInitTypes {
   setShowTicketForm: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const ChatInit: React.FC<ChatInitTypes> = ({ setMessages, setShowGrievanceForm, setShowTicketForm }) => {
+const ChatInit: React.FC<ChatInitTypes> = ({
+  setMessages,
+  setShowGrievanceForm,
+  setShowTicketForm,
+}) => {
+  const { t } = useTranslation();
   const addMessage = (message: string) => {
-    setMessages((prev) => [
-      ...prev,
-      { text: message, isUser: true },
-      { text: `You selected: ${message}`, isUser: false },
-    ]);
+    setMessages((prev) => [...prev, { text: message, isUser: true }]);
     if (message === "Raise Grievance") {
       setShowGrievanceForm(true);
     } else if (message === "Book Ticket") {
@@ -22,18 +24,18 @@ const ChatInit: React.FC<ChatInitTypes> = ({ setMessages, setShowGrievanceForm, 
   };
 
   return (
-    <div className="w-3/4 mx-auto flex flex-row justify-center items-center gap-10">
+    <div className="w-full mx-auto my-auto px-10 flex flex-row justify-center items-center gap-24">
       <div
-        className="flex-1 text-center bg-gray-100 shadow-md py-12 cursor-pointer"
+        className="flex-1 h-48 text-center bg-[#111827] text-white shadow-lg rounded-lg cursor-pointer flex items-center justify-center"
         onClick={() => addMessage("Raise Grievance")}
       >
-        Raise Grievance
+        {t('raiseGrievance')}
       </div>
       <div
-        className="flex-1 text-center bg-gray-100 shadow-md py-12 cursor-pointer"
+        className="flex-1 h-48 text-center bg-[#111827] text-white shadow-lg rounded-lg cursor-pointer flex items-center justify-center"
         onClick={() => addMessage("Book Ticket")}
       >
-        Book Ticket
+        {t('bookTicket')}
       </div>
     </div>
   );

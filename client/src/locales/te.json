@@ -1,0 +1,62 @@
+{
+    "Navbar": "Navbar",
+    "railmadad": "రైల్మాదద్",
+    "assistanceGrievance": "విచారణ, సహాయం & ఫిర్యాదుల పరిష్కారం కోసం",
+    "forMedicalAssistance": "వైద్య సహాయం కోసం",
+    
+    "Sidebar": "Sidebar",
+    "raiseGrievance": "ఫిర్యాదు చేయండి",
+    "chatBot": "చాట్ బాట్",
+    "trackComplaint": "ఫిర్యాదును ట్రాక్ చేయండి",
+    "feedback": "ఫీడ్‌బ్యాక్",
+
+
+
+    "bookTicket": "టికెట్ బుక్ చేయండి",
+    "submit": "సమర్పించండి",
+    "from": "నుండి",
+    "to": "వరకు",
+    "date": "తేదీ",
+    "passengers": "ప్రయాణికుల సంఖ్య",
+    "class": "తరగతి",
+    "economy": "ఎకానమీ",
+    "business": "బిజినెస్",
+    "firstClass": "ఫస్ట్ క్లాస్",
+    
+
+    "name": "పేరు",
+    "phoneNumber": "ఫోన్ నంబర్",
+    "email": "ఇమెయిల్",
+    "pnr": "PNR",
+    "station": "స్టేషన్",
+    "grievanceType": "ఫిర్యాదు రకం",
+    "selectGrievanceType": "ఫిర్యాదు రకాన్ని ఎంచుకోండి",
+    "delay": "ట్రెయిన్ దిగుమతి",
+    "cancellation": "రద్దు",
+    "refund": "రీఫండ్",
+    "injury": "గాయం",
+    "cleanliness": "శుభ్రతా సమస్య",
+    "food": "ఆహార గుణం",
+    "staff": "స్టాఫ్ వర్తన",
+    "security": "భద్రత",
+    "other": "ఇతరం",
+    "description": "వివరణ",
+    "upload": "చిత్రాన్ని అప్‌లోడ్ చేయండి",
+    "submitGrievance": "ఫిర్యాదు సమర్పించండి",
+    
+    "bookTicketButton": "టికెట్ బుక్ చేయండి",
+    "selectClass": "తరగతిని ఎంచుకోండి",
+    "typeYourMessage": "మీ సందేశాన్ని టైప్ చేయండి...",
+    "send": "పంపండి",
+
+
+    "referenceNumber": "సందర్భ సంఖ్య",
+    "status": "స్థితి",
+    "enterRefNo": "సందర్భ సంఖ్య నమోదు చేయండి",
+
+
+    "rateYourExperience": "మీ అనుభవాన్ని రేట్ చేయండి",
+    "comments": "వ్యాఖ్యలు",
+    "submitFeedback": "ఫీడ్‌బ్యాక్ సమర్పించండి",
+    "yourFeedback": "మీ ఫీడ్‌బ్యాక్"
+  }
